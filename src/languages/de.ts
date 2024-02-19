@@ -16,11 +16,13 @@ const extra = {
 /**
  * @param {ExtraMessages} [extraMessages] - Object with extra messages
  * @param {SecondaryButtonMode} [secondaryButtonMode] - Which secondary button should be shown
+ * @param {Record<Values<typeof CookieConsentCategory>, VanillaCookieConsent.CookieTableItem[]>} [cookieTable] - Cookie table items defined by category
  * @returns {VanillaCookieConsent.Languages} Object with translated messages
  */
 export const config = (
   extraMessages: ExtraMessages,
   secondaryButtonMode: Values<typeof SecondaryButtonMode>,
+  cookieTable: Record<Values<typeof CookieConsentCategory>, VanillaCookieConsent.CookieTableItem[] | undefined>,
 ): VanillaCookieConsent.Languages => {
   const lang = { ...extra, ...extraMessages };
 

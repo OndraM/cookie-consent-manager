@@ -26,6 +26,12 @@ export type TranslationOverride = {
   settingsModalMoreInfo?: string;
 };
 
+export type CookieTable = {
+  [language: string]: {
+    [category in CookieConsentCategoryValues]?: VanillaCookieConsent.CookieTableItem[];
+  };
+};
+
 export type CookieConsentManagerOptions = {
   defaultLang: string;
   autodetectLang: boolean;
@@ -37,6 +43,7 @@ export type CookieConsentManagerOptions = {
   displayMode: Values<typeof DisplayMode>;
   secondaryButtonMode: Values<typeof SecondaryButtonMode>;
   translationOverrides: Record<string, TranslationOverride>;
+  cookieTable: CookieTable;
   config: VanillaCookieConsent.Options<CookieConsentCategoryValues>;
 };
 

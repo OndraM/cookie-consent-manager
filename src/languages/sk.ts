@@ -19,11 +19,13 @@ const extra = {
 /**
  * @param {ExtraMessages} [extraMessages] - Object with extra messages
  * @param {SecondaryButtonMode} [secondaryButtonMode] - Which secondary button should be shown
+ * @param {Record<Values<typeof CookieConsentCategory>, VanillaCookieConsent.CookieTableItem[]>} [cookieTable] - Cookie table items defined by category
  * @returns {VanillaCookieConsent.Languages} Object with translated messages
  */
 export const config = (
   extraMessages: ExtraMessages,
   secondaryButtonMode: Values<typeof SecondaryButtonMode>,
+  cookieTable: Record<Values<typeof CookieConsentCategory>, VanillaCookieConsent.CookieTableItem[] | undefined>,
 ): VanillaCookieConsent.Languages => {
   const lang = { ...extra, ...extraMessages };
 
@@ -57,6 +59,7 @@ export const config = (
       accept_all_btn: 'Prijať všetky',
       reject_all_btn: 'Prijať nevyhnutné',
       save_settings_btn: 'Uložiť nastavenia',
+      cookie_table_headers: [{ col_pattern: 'Meno cookie' }, { col_title: 'Služba' }, { col_description: 'Popis' }],
       blocks: [
         {
           description:
@@ -73,6 +76,7 @@ export const config = (
             enabled: true,
             readonly: true,
           },
+          cookie_table: cookieTable[CookieConsentCategory.NECESSARY] || undefined,
         },
         {
           title: 'Analytické cookies',
@@ -82,6 +86,7 @@ export const config = (
             enabled: false,
             readonly: false,
           },
+          cookie_table: cookieTable[CookieConsentCategory.ANALYTICS] || undefined,
         },
         {
           title: 'Funkčné cookies',
@@ -91,6 +96,7 @@ export const config = (
             enabled: false,
             readonly: false,
           },
+          cookie_table: cookieTable[CookieConsentCategory.FUNCTIONALITY] || undefined,
         },
         {
           title: 'Marketingové cookies',
@@ -100,6 +106,7 @@ export const config = (
             enabled: false,
             readonly: false,
           },
+          cookie_table: cookieTable[CookieConsentCategory.AD] || undefined,
         },
         {
           title: 'Personalizačné cookies',
@@ -109,6 +116,7 @@ export const config = (
             enabled: false,
             readonly: false,
           },
+          cookie_table: cookieTable[CookieConsentCategory.PERSONALIZATION] || undefined,
         },
       ],
     },

@@ -111,6 +111,7 @@
                     </li>
                     <li>Clearing localStorage when user gives consent to only necessary data (<code>onFirstAccept</code>)</li>
                     <li>Clearing localStorage when user updates consent and rejects some consent category (<code>onChange</code>)</li>
+                    <li>Using <code>cookieTable</code> configuration to list cookies in the settings modal</li>
                     <li>Overriding default translation (<code>translationOverrides</code>) for consent modal title</li>
                     <li>Etc.</li>
                 </ul>
@@ -183,6 +184,33 @@
                 <a href="https://www.almacareer.com/gdpr/sk/cookie-policy" target="_blank">druhý</a>
                  a <a href="https://www.almacareer.com/sk" target="_blank">tretí</a> vlastný odkaz</a>.`,
           },
+        },
+        cookieTable: {
+          sk: {
+            necessary: [
+              {
+                col_pattern: '^_ga',
+                col_title: 'Google Analytics',
+                col_description: 'description ...',
+                is_regex: true
+              },
+              {
+                col_pattern: 'lmc_ccm',
+                col_title: 'Cookie Consent Manager',
+                col_description: 'description ...',
+              },
+            ],
+            // ad: [ ... ],
+            // analytics: [ ... ],
+            // functionality: [ ... ],
+            personalization: [
+              {
+                col_pattern: 'sessionLog_id',
+                col_title: 'Session Log',
+                col_description: 'Session log identification',
+              },
+            ],
+          }
         }
       }
     );
