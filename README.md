@@ -247,6 +247,24 @@ initLmcCookieConsentManager( // when loaded as a module, these options are passe
       cs: { consentTitle: 'Vlastní nadpis', descriptionIntro: 'Vlastní úvodní text popisu souhlasu' },
       en: { consentTitle: 'Custom title' },
     },
+    cookieTable: { // cookie table for specified languages, shown in settings modal
+      cs: {
+        necessary: [
+          { name: '_ga', title: 'Google Analytics', description: 'Popisek ...' },
+          { name: 'lmc_ccm', title: 'Cookie Consent Manager', description: 'Popisek ...' },
+        ],
+        // ad: [ ... ],
+        // analytics: [ ... ],
+        // functionality: [ ... ],
+        // personalization: [ ... ]
+      },
+      en: {
+        necessary: [
+          { name: '_ga', title: 'Google Analytics', description: 'Description ...' },
+          // ...
+        ],
+      }
+    },
     config: {
       // overrides of the default config, see https://github.com/orestbida/cookieconsent/tree/v2.9?tab=readme-ov-file#configuration-options
     },
@@ -269,6 +287,7 @@ initLmcCookieConsentManager( // when loaded as a module, these options are passe
 | `secondaryButtonMode`    | SecondaryButtonMode (string)        | `SecondaryButtonMode. ACCEPT_NECESSARY` (`acceptNecessary`) | Which button should be shown next to "Accept all". `acceptNecessary` (default) or `showSettings` (this option also hides link to show settings in consent text).                                              |
 | `on*` callbacks          | function                            | `(cookieConsent) => {}`                                     | See below for configurable callbacks.                                                                                                                                                                         |
 | `translationOverrides`   | Record<string, TranslationOverride> | `{}`                                                        | Override default translation for specified languages. `consentTitle`, `descriptionIntro` and `settingsModalMoreInfo` could be overridden.<br>[See example][examples-configuration]                            |
+| `cookieTable`            | CookieTable                         | `{}`                                                        | Define cookie table for specified languages<br>[See above for example configuration](#configuration)                                                                                                          |
 
 ### Supported languages
 
