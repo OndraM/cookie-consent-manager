@@ -13,22 +13,6 @@ import { config as configSl } from './sl';
 import { config as configUk } from './uk';
 import { CookieTable, TranslationOverride, VanillaCookieConsent } from '../types';
 
-export const assembleLanguagesConfig = (
-  companyNames: string[],
-  translationOverrides: Record<string, TranslationOverride>,
-  secondaryButtonMode: string,
-  cookieTable: CookieTable,
-): Record<string, VanillaCookieConsent.Languages> =>
-  Object.entries(languagesMap).reduce((languagesConfig, [code, configFunction]) => {
-    languagesConfig[code] = configFunction(
-      { companyNames, ...translationOverrides[code] },
-      secondaryButtonMode,
-      cookieTable[code] || {},
-    );
-
-    return languagesConfig;
-  }, {} as Record<string, VanillaCookieConsent.Languages>);
-
 const languagesMap = {
   cs: configCs,
   de: configDe,
@@ -44,3 +28,19 @@ const languagesMap = {
   sl: configSl,
   uk: configUk,
 };
+
+export const assembleLanguagesConfig = (
+  companyNames: string[],
+  translationOverrides: Record<string, TranslationOverride>,
+  secondaryButtonMode: string,
+  cookieTable: CookieTable,
+): Record<string, VanillaCookieConsent.Languages> =>
+  Object.entries(languagesMap).reduce((languagesConfig, [code, configFunction]) => {
+    languagesConfig[code] = configFunction(
+      { companyNames, ...translationOverrides[code] },
+      secondaryButtonMode,
+      cookieTable[code] || {},
+    );
+
+    return languagesConfig;
+  }, {} as Record<string, VanillaCookieConsent.Languages>);
